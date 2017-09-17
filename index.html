@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <title>Better Call Saul</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="shortcut icon" href="">
+
+</head>
+
+<body>
+    <a class="btn" href="#openModal" onclick="getdata()">Click here please</a>
+    <div id="openModal" class="modalDialog">
+      <div>
+    		<a href="#index" title="Close" class="close">X</a>
+    		<h2>Episodes</h2>
+        <div id="div1"></div>
+	    </div>
+    </div>
+</body>
+<script>
+      function getdata() {
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+          if(xhttp.readyState== 4 && xhttp.status==200) {
+            var javaobj = JSON.parse(xhttp.response);
+            // var obj = JSON.stringify(javaobj._embedded.episodes);
+            // document.getElementById("div1").innerHTML = obj;
+            document.getElementById("div1").innerHTML = javaobj.summary;
+          }
+        }
+        xhttp.open("GET", "better-call-saul.json", true);
+        xhttp.send();
+      }
+</script>
+</html>
